@@ -163,7 +163,7 @@ val filterMapLemma6:#t:eqtype -> #a:eqtype -> x:t -> l:list t -> f:(t -> a) -> L
 let filterMapLemma6 #t #a x l f = flem f;filterMapLemma5 x l f
 
 //要素を削除する関数
-val memRemove : #t:eqtype -> x:t -> l:list t -> Tot (m:list t{(forall i. mem i m ==> mem i l)/\(forall i. mem i m ==> (not(x = i)))})
+val memRemove : #t:eqtype -> x:t -> l:list t -> Tot (m:list t{(forall i. mem i m ==> mem i l)/\(forall i. mem i m ==> (not(x = i)))/\(not(mem x m))})
 let memRemove #t x l = filter (removefilter x) l  
 
 //削除後の要素にいない

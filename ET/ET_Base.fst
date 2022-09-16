@@ -201,10 +201,9 @@ let rec removeCerclesLemma3 cl c col =
     | [] -> ()
     | hd::tl -> removeCerclesLemma2 tl c col 2; removeCerclesLemma3 tl c col
 
-
 //remove
-val removeBlocks: bl:blocks{notOverlap bl} -> b:block{mem b bl} -> l:blocks{(notOverlap l) /\(length bl = length l + 1)}
+val removeBlocks: bl:blocks{notOverlap bl} -> b:block{mem b bl} -> l:blocks{(notOverlap l) /\(length bl = length l + 1)/\(forall i. mem i l ==> mem i bl)/\(not(mem b l))}
 let removeBlocks bl b = memRemove b bl 
 
-val removeCercles: cl:cercles{notOverlap cl} -> c:cercle{mem c cl} -> l:cercles{(notOverlap l)/\(length cl = length l + 1)}
+val removeCercles: cl:cercles{notOverlap cl} -> c:cercle{mem c cl} -> l:cercles{(notOverlap l)/\(length cl = length l + 1)/\(forall i. mem i l ==> mem i cl)/\(not(mem c l))}
 let removeCercles cl c = memRemove c cl 
